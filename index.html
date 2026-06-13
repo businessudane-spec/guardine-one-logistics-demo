@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOGISTICS YOS | Next-Gen Yard Operating System</title>
+  <meta name="description" content="Welcome to the next industry standard in yard logistics. The Logistics Operating System (YOS) bridges the highway and the warehouse with AI-native tracking, gate automation, and real-time computer vision orchestration.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+
+  <!-- Header Navigation -->
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <a href="#" class="logo" id="logo-home">
+        <!-- Custom Terminal T Logo SVG -->
+        <svg class="logo-svg" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="28" height="28" rx="6" fill="white"/>
+          <path d="M7 8H21V11H15.5V21H12.5V11H7V8Z" fill="#052424"/>
+        </svg>
+        <span>Terminal</span>
+      </a>
+      
+      <nav class="nav-links">
+        <div class="nav-item-dropdown">
+          <a href="#operating-system" class="nav-link" id="nav-os">
+            System
+            <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="nav-item-dropdown">
+          <a href="#capabilities" class="nav-link" id="nav-cap">
+            Markets
+            <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="nav-item-dropdown">
+          <a href="#impact" class="nav-link" id="nav-imp">
+            Featured
+            <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="nav-item-dropdown">
+          <a href="#capabilities" class="nav-link">
+            Resources
+            <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <a href="#request-demo" class="nav-link">About</a>
+      </nav>
+
+      <div class="header-actions-group">
+        <!-- Phone button -->
+        <a href="tel:+17372796032" class="btn-phone-circle" aria-label="Call Us">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </a>
+        <!-- Demo Button -->
+        <a href="#request-demo" class="btn-header-white">DEMO</a>
+        <!-- Contact Button -->
+        <a href="#request-demo" class="btn-header-lime">CONTACT</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Hero Section with Clean Scroll-based Frames -->
+  <section class="hero-scroll-wrapper" id="hero">
+    <!-- Sticky Canvas Container -->
+    <div class="hero-sticky-container">
+      <canvas id="hero-frame-canvas"></canvas>
+      
+      <!-- Shutter Panels and Transition Text -->
+      <div class="hero-transition-text" id="hero-trans-text">Powering the yards behind<br>the brands you know</div>
+    </div>
+  </section>
+
+
+  <!-- Brands Grid Section right after Hero -->
+  <section class="section brands-section" id="brands">
+    <div class="brands-container">
+      
+      <div class="brands-grid-wrapper reveal-on-scroll">
+        <!-- Intersections grid-plus indicators (+) -->
+        <!-- Top border row -->
+        <div class="grid-plus d-none-mobile" style="top: 0; left: 0;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 0; left: 10%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 0; left: 20%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 0; left: 30%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 0; left: 40%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 0; left: 50%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 0; left: 60%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 0; left: 70%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 0; left: 80%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 0; left: 90%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 0; left: 100%;">+</div>
+
+        <!-- Middle border row -->
+        <div class="grid-plus d-none-mobile" style="top: 50%; left: 0;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 50%; left: 10%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 50%; left: 20%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 50%; left: 30%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 50%; left: 40%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 50%; left: 50%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 50%; left: 60%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 50%; left: 70%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 50%; left: 80%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 50%; left: 90%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 50%; left: 100%;">+</div>
+
+        <!-- Bottom border row -->
+        <div class="grid-plus d-none-mobile" style="top: 100%; left: 0;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 100%; left: 10%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 100%; left: 20%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 100%; left: 30%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 100%; left: 40%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 100%; left: 50%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 100%; left: 60%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 100%; left: 70%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 100%; left: 80%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 100%; left: 90%;">+</div>
+        <div class="grid-plus d-none-mobile" style="top: 100%; left: 100%;">+</div>
+
+        <div class="brands-grid">
+          <!-- Row 1 -->
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <text x="50%" y="65%" font-family="var(--font-primary)" font-weight="900" font-size="24" text-anchor="middle" letter-spacing="-1">DSV</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <text x="50%" y="58%" font-family="'Arial Black', sans-serif" font-weight="900" font-size="16" text-anchor="middle" letter-spacing="-0.5">BIMBO</text>
+              <path d="M18 26 C 35 30, 65 30, 82 26" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 120 40" fill="currentColor">
+              <text x="12" y="25" font-family="'Arial Black', sans-serif" font-style="italic" font-weight="900" font-size="12" letter-spacing="-0.8">GOOD</text>
+              <path d="M53 14 L57 12 L55 17 L59 15 L56 22 L61 20 L57 26 L60 26 L55 30 L54 26 L56 26 L53 22 L55 22 L51 18 L53 18 Z" fill="currentColor"/>
+              <text x="63" y="25" font-family="'Arial Black', sans-serif" font-style="italic" font-weight="900" font-size="12" letter-spacing="-0.8">YEAR</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <ellipse cx="50" cy="20" rx="30" ry="12" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M28 23 Q 50 16, 72 23" fill="none" stroke="currentColor" stroke-width="1"/>
+              <text x="50%" y="23" font-family="'Georgia', serif" font-weight="bold" font-style="italic" font-size="8" text-anchor="middle">Ocean Spray</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <text x="50%" y="65%" font-family="'Brush Script MT', cursive, sans-serif" font-weight="bold" font-size="25" text-anchor="middle">Culligan</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <text x="50%" y="23" font-family="var(--font-primary)" font-weight="900" font-size="19" font-style="italic" text-anchor="middle">NFI</text>
+              <path d="M26 27 Q 50 31, 74 27" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <circle cx="76" cy="24" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <text x="50%" y="65%" font-family="var(--font-primary)" font-style="italic" font-weight="900" font-size="22" text-anchor="middle">Ryder</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <circle cx="50" cy="20" r="14" fill="currentColor"/>
+              <text x="50%" y="27" font-family="var(--font-primary)" font-style="italic" font-weight="900" font-size="16" fill="#052424" text-anchor="middle">hp</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <text x="50%" y="65%" font-family="var(--font-primary)" font-weight="900" font-size="17" text-anchor="middle" letter-spacing="-0.5">T.J.maxx</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 110 40" fill="currentColor">
+              <circle cx="24" cy="20" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M19 20 Q 24 23, 29 20 M 24 13 L 24 27" fill="none" stroke="currentColor" stroke-width="1"/>
+              <text x="35" y="24" font-family="var(--font-primary)" font-weight="900" font-size="12" letter-spacing="0.5">PROLOGIS</text>
+            </svg>
+          </div>
+          
+          <!-- Row 2 -->
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <text x="50%" y="65%" font-family="var(--font-primary)" font-size="14" text-anchor="middle" letter-spacing="4">VINCE.</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <path d="M42 12 L46 16 L50 11 L54 16 L58 12 L56 19 L44 19 Z M44 20 L56 20 L54 22 L46 22 Z" fill="currentColor"/>
+              <text x="50%" y="34" font-family="var(--font-primary)" font-weight="900" font-size="11" text-anchor="middle" letter-spacing="1">STANLEY</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <circle cx="50" cy="20" r="13" fill="none" stroke="currentColor" stroke-width="2"/>
+              <text x="50%" y="26" font-family="var(--font-primary)" font-weight="900" font-size="13" text-anchor="middle" letter-spacing="-0.5">RAC</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 120 40" fill="currentColor">
+              <text x="50%" y="62%" font-family="var(--font-primary)" font-weight="600" font-size="9" text-anchor="middle" letter-spacing="2.5">MARC JACOBS</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <rect x="20" y="11" width="60" height="18" fill="currentColor" rx="1.5"/>
+              <text x="50%" y="25" font-family="var(--font-primary)" font-weight="900" font-size="12" fill="#ffffff" text-anchor="middle" letter-spacing="1">PODS</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <text x="50%" y="65%" font-family="var(--font-primary)" font-style="italic" font-weight="900" font-size="16" text-anchor="middle" letter-spacing="-0.5">Foxconn</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <text x="50%" y="62%" font-family="var(--font-primary)" font-size="11" text-anchor="middle" letter-spacing="3.5">NINE WEST</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <rect x="20" y="6" width="60" height="18" fill="currentColor"/>
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <text x="50%" y="18" font-family="'Brush Script MT', cursive, sans-serif" font-size="15" fill="currentColor" text-anchor="middle">Kirkland</text>
+              <text x="50%" y="32" font-family="var(--font-primary)" font-weight="600" font-size="6" fill="currentColor" text-anchor="middle" letter-spacing="1">SIGNATURE</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 110 40" fill="currentColor">
+              <text x="50%" y="65%" font-family="var(--font-primary)" font-weight="900" font-size="11" text-anchor="middle" letter-spacing="0.5">DB SCHENKER</text>
+            </svg>
+          </div>
+          <div class="brand-cell">
+            <svg class="brand-logo-svg" viewBox="0 0 100 40" fill="currentColor">
+              <text x="50%" y="62%" font-family="var(--font-primary)" font-weight="300" font-size="13" text-anchor="middle" letter-spacing="4">KASPER</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Transition Quote Section -->
+  <section class="quote-section" id="quote">
+    <div class="quote-container">
+      <h2 class="quote-text">
+        Imagine the yard as an intelligent bridge seamlessly connecting highway to warehouse.
+      </h2>
+    </div>
+  </section>
+
+
+  <!-- Advantages Section -->
+  <section class="advantages-section" id="advantages">
+    <div class="advantages-container">
+      <!-- Left Sticky Column -->
+      <div class="advantages-left">
+        <h2 class="advantages-main-heading">OUR<br>ADVANTAGES</h2>
+      </div>
+
+      <!-- Right Scroll Column -->
+      <div class="advantages-right">
+        <!-- Card 1 -->
+        <div class="advantage-card">
+          <div class="card-header">
+            <h3>20+ YEARS OF PROVEN SUCCESS</h3>
+          </div>
+          <div class="card-body">
+            <p>in international and domestic freight transportation.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="advantage-card">
+          <div class="card-header">
+            <h3>A MODERN FLEET</h3>
+          </div>
+          <div class="card-body">
+            <p>capable of handling shipments of any complexity.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="advantage-card">
+          <div class="card-header">
+            <h3>WAREHOUSES IN STRATEGIC REGIONS</h3>
+          </div>
+          <div class="card-body">
+            <p>for fast processing and efficient logistics.</p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="advantage-card">
+          <div class="card-header">
+            <h3>24/7 CUSTOMER SUPPORT</h3>
+          </div>
+          <div class="card-body">
+            <p>always in touch so you’re confident about your cargo.</p>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="advantage-card">
+          <div class="card-header">
+            <h3>ROUTE OPTIMIZATION</h3>
+          </div>
+          <div class="card-body">
+            <p>to save clients’ time and costs.</p>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="advantage-card">
+          <div class="card-header">
+            <h3>AN IN-HOUSE TEAM</h3>
+          </div>
+          <div class="card-body">
+            <p>of experienced logisticians controlling every stage of transportation.</p>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="advantage-card">
+          <div class="card-header">
+            <h3>CARGO INSURANCE</h3>
+          </div>
+          <div class="card-body">
+            <p>for maximum safety and peace of mind.</p>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="advantage-card">
+          <div class="card-header">
+            <h3>FLEXIBLE COOPERATION TERMS</h3>
+          </div>
+          <div class="card-body">
+            <p>and tailor-made solutions for every client.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section" id="services">
+    <div class="services-container">
+      <!-- Left Sticky Column -->
+      <div class="services-left">
+        <div class="services-image-wrapper">
+          <img src="image.png" alt="Our Services" class="services-bg-img">
+          <div class="services-image-overlay"></div>
+          <h2 class="services-main-heading">OUR<br>SERVICES</h2>
+          <!-- Loading bar in bottom of left image -->
+          <div class="services-progress-container">
+            <div class="services-progress-bar" id="services-progress-bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Scroll Column -->
+      <div class="services-right">
+        <!-- Card 1 -->
+        <div class="service-card reveal-on-scroll">
+          <div class="service-num">01</div>
+          <div class="service-content">
+            <h3>INTERNATIONAL FREIGHT TRANSPORTATION</h3>
+            <p>fast, safe and without borders.</p>
+          </div>
+          <div class="service-action">
+            <button class="btn-service-plus">+</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card alt-bg reveal-on-scroll">
+          <div class="service-num">02</div>
+          <div class="service-content">
+            <h3>SORTING AND PROFESSIONAL CARGO HANDLING</h3>
+            <p>for maximum accuracy and safety.</p>
+          </div>
+          <div class="service-action">
+            <button class="btn-service-plus">+</button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card reveal-on-scroll">
+          <div class="service-num">03</div>
+          <div class="service-content">
+            <h3>COMPREHENSIVE LOGISTICS SOLUTIONS FOR BUSINESSES</h3>
+            <p>from planning to execution.</p>
+          </div>
+          <div class="service-action">
+            <button class="btn-service-plus">+</button>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="service-card alt-bg reveal-on-scroll">
+          <div class="service-num">04</div>
+          <div class="service-content">
+            <h3>CUSTOMS CLEARANCE</h3>
+            <p>fast and hassle-free, turnkey service.</p>
+          </div>
+          <div class="service-action">
+            <button class="btn-service-plus">+</button>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="service-card reveal-on-scroll">
+          <div class="service-num">05</div>
+          <div class="service-content">
+            <h3>DOOR-TO-DOOR DELIVERY</h3>
+            <p>Door-to-door delivery</p>
+          </div>
+          <div class="service-action">
+            <button class="btn-service-plus">+</button>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="service-card alt-bg reveal-on-scroll">
+          <div class="service-num">06</div>
+          <div class="service-content">
+            <h3>ONLINE TRACKING 24/7</h3>
+            <p>full control at every stage.</p>
+          </div>
+          <div class="service-action">
+            <button class="btn-service-plus">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Split Sticky Scroll Section -->
+  <section class="split-scroll-section" id="split-scroll">
+    <div class="split-scroll-sticky-container">
+      <!-- Left Side Text Content (scroll triggers) -->
+      <div class="split-scroll-left">
+        <div class="split-text-wrapper">
+          <!-- Text Item 1 -->
+          <div class="split-text-item active" id="split-text-1">
+            <span class="split-text-num">01</span>
+            <h2>SMART GATE INGESTION</h2>
+            <p>Automated Optical Character Recognition (OCR) captures license plates, container serials, and seals instantly as hostlers cross the threshold.</p>
+          </div>
+          <!-- Text Item 2 -->
+          <div class="split-text-item" id="split-text-2">
+            <span class="split-text-num">02</span>
+            <h2>LIVE YARD GRID MAPPING</h2>
+            <p>High-fidelity coordination maps every bay, chassis, and trailer slot in a unified operational matrix.</p>
+          </div>
+          <!-- Text Item 3 -->
+          <div class="split-text-item" id="split-text-3">
+            <span class="split-text-num">03</span>
+            <h2>COMPUTER VISION AUDITING</h2>
+            <p>Continuous aerial and ground camera feeds monitor yard activity, verifying container presence and door status.</p>
+          </div>
+          <!-- Text Item 4 -->
+          <div class="split-text-item" id="split-text-4">
+            <span class="split-text-num">04</span>
+            <h2>ALGORITHMIC DISPATCH</h2>
+            <p>Automated work order assignments direct terminal tractors along conflict-free, optimized routes.</p>
+          </div>
+          <!-- Text Item 5 -->
+          <div class="split-text-item" id="split-text-5">
+            <span class="split-text-num">05</span>
+            <h2>DETENTION FEE MITIGATION</h2>
+            <p>Predictive dwell-time alerts isolate high-priority assets before detention and demurrage penalties accrue.</p>
+          </div>
+          <!-- Text Item 6 -->
+          <div class="split-text-item" id="split-text-6">
+            <span class="split-text-num">06</span>
+            <h2>ENTERPRISE API INTEGRATION</h2>
+            <p>Seamless, sub-second bi-directional synchronizations bridge operations with SAP WMS, Blue Yonder, and TMS networks.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side Visual Content (Canvas/Video Display) -->
+      <div class="split-scroll-right">
+        <div class="split-visualizer-box">
+          <div class="crosshair ch-tl"></div>
+          <div class="crosshair ch-tr"></div>
+          <div class="crosshair ch-bl"></div>
+          <div class="crosshair ch-br"></div>
+          
+          <div class="visualizer-header">
+            <div class="visualizer-title">
+              <span class="live-indicator"></span>
+              SYS.INTELLIGENT_ORCHESTRATION.EXE
+            </div>
+          </div>
+          
+          <!-- Live Interactive Visualization Screen Contexts -->
+          <div class="split-screen-container">
+            <!-- Video 1 -->
+            <video class="split-video-player active" id="split-video-1" src="images/video frame-1/vid_3-1_prerender_1.mp4" muted loop playsinline autoplay></video>
+            <!-- Video 2 -->
+            <video class="split-video-player" id="split-video-2" src="images/video frame-1/vid_3-2_prerender_1.mp4" muted loop playsinline></video>
+            <!-- Video 3 -->
+            <video class="split-video-player" id="split-video-3" src="images/video frame-1/vid_3-3_prerender_1.mp4" muted loop playsinline></video>
+            <!-- Video 4 -->
+            <video class="split-video-player" id="split-video-4" src="images/video frame-1/vid_3-5_prerender_1.mp4" muted loop playsinline></video>
+            <!-- Video 5 -->
+            <video class="split-video-player" id="split-video-5" src="images/video frame-1/vid_5-4_prerender_1.mp4" muted loop playsinline></video>
+            <!-- Video 6 -->
+            <video class="split-video-player" id="split-video-6" src="images/video frame-1/hp-where-4.mp4" muted loop playsinline></video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOS Reveal Section -->
+  <section id="los-reveal" class="los-reveal-section">
+    <div class="los-reveal-sticky">
+      <div class="los-reveal-container">
+        <div class="los-subtext" id="los-subtext">That's the</div>
+        <h1 class="los-main-heading" id="los-heading">
+          <span class="los-word" id="los-word-l">
+            <span class="letter">L</span><span class="letter">o</span><span class="fade-chars" id="los-fade-l">gistics</span>
+          </span>
+          <span class="los-word" id="los-word-s">
+            <span class="letter">S</span><span class="fade-chars" id="los-fade-s">ystem</span><sup class="tm-superscript" id="los-tm">TM</sup>
+          </span>
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- Container Handling / Crane Operations Section -->
+  <section class="section" id="crane-operations">
+    <div class="container container-split">
+      <div class="crane-left">
+        <div class="mono-label">Terminal Orchestration</div>
+        <h2 class="heading-large">Precision under tension.</h2>
+        <p class="body-large" style="margin-bottom: 2rem; font-size: 1.15rem;">
+          Our smart crane and heavy-lift integrations ensure that every container transfer is handled with absolute safety, control, and zero margin of error.
+        </p>
+        <div class="crane-specs">
+          <div class="spec-item">
+            <span class="spec-dot"></span>
+            <div>
+              <strong>Tension Regulation</strong>
+              <p>Real-time sway correction and cable load distribution telemetry.</p>
+            </div>
+          </div>
+          <div class="spec-item">
+            <span class="spec-dot"></span>
+            <div>
+              <strong>Zero-Touch Spreading</strong>
+              <p>Autonomous positioning checks verify spreader alignment before container hoist.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="crane-right">
+        <div class="crane-img-wrapper reveal-on-scroll">
+          <img src="images/dd.png" alt="Container crane loading" class="crane-main-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Impact Section -->
+  <section class="section" id="impact">
+    <div class="container">
+      <div class="mono-label">Performance Metrics</div>
+      <h2 class="heading-large" id="impact-heading">Eliminate friction at scale.</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card reveal-on-scroll" id="stat-1">
+          <div class="crosshair ch-tl"></div>
+          <div class="crosshair ch-br"></div>
+          <div class="value" id="val-stat-1">-40%</div>
+          <div class="label">Gate Transit Time</div>
+          <div class="desc">Automated check-ins and autonomous visual gate processing eliminate driver wait times.</div>
+        </div>
+        <div class="stat-card reveal-on-scroll" id="stat-2" style="transition-delay: 0.1s;">
+          <div class="crosshair ch-tl"></div>
+          <div class="crosshair ch-br"></div>
+          <div class="value" id="val-stat-2">99.2%</div>
+          <div class="label">Asset Accuracy</div>
+          <div class="desc">Constant vision-based inventory checks mean you never lose track of a trailer or chassis.</div>
+        </div>
+        <div class="stat-card reveal-on-scroll" id="stat-3" style="transition-delay: 0.2s;">
+          <div class="crosshair ch-tl"></div>
+          <div class="crosshair ch-br"></div>
+          <div class="value" id="val-stat-3">3.5x</div>
+          <div class="label">Throughput Multiplier</div>
+          <div class="desc">Orchestrate hostler movements automatically to optimize daily container handoffs.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Operating System Showcase (Simulator) -->
+  <section class="section" id="operating-system">
+    <div class="container">
+      <div class="mono-label">The Platform</div>
+      <h2 class="heading-large" id="os-heading">Designed for operations that can't stop.</h2>
+      
+      <div class="showcase-grid">
+        <!-- Interactive Controls / Tabs -->
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="gate" id="tab-gate">
+            <div class="tab-btn-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+              Autonomous Gate
+            </div>
+            <div class="tab-btn-desc">Computer vision instantly scans license plates, container IDs, and safety status. Zero clerk dependency.</div>
+          </button>
+          <button class="tab-btn" data-tab="inventory" id="tab-inventory">
+            <div class="tab-btn-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              Live Yard Grid
+            </div>
+            <div class="tab-btn-desc">Real-time status overlays, container positioning coordinates, and active dwell alerts.</div>
+          </button>
+          <button class="tab-btn" data-tab="hostler" id="tab-hostler">
+            <div class="tab-btn-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              AI Hostler Dispatch
+            </div>
+            <div class="tab-btn-desc">Intelligent route optimization, instant job assignments, and autonomous driver navigation paths.</div>
+          </button>
+        </div>
+
+        <!-- Simulator Screen UI Wrapper -->
+        <div class="sim-screen" id="sim-screen-container">
+          <div class="sim-screen-header">
+            <div id="sim-title">TERMINAL_GATE_FEED.EXE</div>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <span class="live-indicator"></span>
+              <span style="color:var(--c-lime); font-size:0.65rem;">MONITOR_LIVE</span>
+            </div>
+          </div>
+          <div class="sim-screen-body" id="sim-screen-content">
+            <!-- Content will be injected dynamically via JS based on selected tab -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Capabilities Tech Grid -->
+  <section class="section" id="capabilities">
+    <div class="container">
+      <div class="mono-label">Capabilities</div>
+      <h2 class="heading-large" id="cap-heading">Robust logic for massive volumes.</h2>
+      
+      <div class="capabilities-grid">
+        <div class="capability-card reveal-on-scroll" id="cap-1">
+          <div class="crosshair ch-tl"></div>
+          <div class="icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </div>
+          <h3 id="cap-title-1">Computer Vision Tracking</h3>
+          <p id="cap-desc-1">Our proprietary optical models process video streams at the gate and throughout the yard to read serial numbers, safety logos, and open trailer doors.</p>
+        </div>
+        <div class="capability-card reveal-on-scroll" id="cap-2" style="transition-delay: 0.1s;">
+          <div class="crosshair ch-tl"></div>
+          <div class="icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          </div>
+          <h3 id="cap-title-2">Automated Cost Minimizer</h3>
+          <p id="cap-desc-2">Minimize demurrage, detention, and driver dwell fees. System flags high-priority containers automatically and schedules immediate driver transfers.</p>
+        </div>
+        <div class="capability-card reveal-on-scroll" id="cap-3" style="transition-delay: 0.2s;">
+          <div class="crosshair ch-tl"></div>
+          <div class="icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+          </div>
+          <h3 id="cap-title-3">Legacy WMS/TMS Sync</h3>
+          <p id="cap-desc-3">Seamless bi-directional APIs sync with SAP, Blue Yonder, HighJump, Manhattan, and standard logistics tracking protocols in real time.</p>
+        </div>
+        <div class="capability-card reveal-on-scroll" id="cap-4" style="transition-delay: 0.3s;">
+          <div class="crosshair ch-tl"></div>
+          <div class="icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <h3 id="cap-title-4">Ultra-low Latency Dispatch</h3>
+          <p id="cap-desc-4">Updates render in milliseconds. Gate signals and location tags deploy instantly to hostler in-cab terminals, maintaining peak operational velocity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact section above footer matching the user's uploaded screenshot -->
+  <section class="section contact-section" id="request-demo">
+    <div class="contact-inlay-container">
+      <div class="contact-left">
+        <h2 class="heading-large" style="color: var(--c-dark-green); margin-bottom: 2rem;">Contact us and we will be in touch same day, your way</h2>
+        
+        <p class="contact-desc">Fill out the form, and we'll be happy to discuss how Terminal can help you with your yard of the future:</p>
+        <ul class="contact-bullets">
+          <li>30-minute demo</li>
+          <li>Needs discovery call</li>
+          <li>Yard ROI assessment</li>
+        </ul>
+
+        <div class="trusted-by-wrap">
+          <p class="trusted-title">Trusted by those in the know.</p>
+          <div class="trusted-logos">
+            <span class="logo-text">Ryder</span>
+            <span class="logo-text">HONDA</span>
+            <span class="logo-text">DSV</span>
+            <span class="logo-text">NFI</span>
+            <span class="logo-text">BIMBO</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-right">
+        <!-- Floating Form Container -->
+        <div class="form-container-box">
+          <form id="contact-form" onsubmit="event.preventDefault(); alert('Form submitted successfully!');">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="full-name">Full Name *</label>
+                <input type="text" id="full-name" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="role">Role or position *</label>
+                <input type="text" id="role" placeholder="Project manager" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" placeholder="(202) 555-0147">
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" placeholder="name@email.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="company">Company name *</label>
+              <input type="text" id="company" placeholder="Acme" required>
+            </div>
+            <div class="form-group">
+              <label for="help">How Can We Help? *</label>
+              <select id="help" required>
+                <option value="" disabled selected>Select options</option>
+                <option value="demo">Request System Demo</option>
+                <option value="pricing">Request Pricing Analysis</option>
+                <option value="integration">API & WMS Integration Details</option>
+                <option value="other">General Logistics Inquiry</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-form-submit">SUBMIT</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Custom Curved Panels & Footer Layout (Reference Screenshot Style) -->
+  <div class="footer-wrap">
+    <div class="footer-inlay-container">
+      <div class="footer-inlay-top">
+        <h2 class="footer-main-cta">The yard of the future starts today.</h2>
+        <a href="#request-demo" class="btn-footer-pill" id="btn-footer-charge">TAKE CHARGE OF YOUR YARD</a>
+      </div>
+
+      <footer class="site-footer" id="footer-main">
+        <div class="footer-grid">
+          <!-- Left Logo & Gartner Badging -->
+          <div class="footer-logo-col">
+            <a href="#" class="logo" id="logo-footer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="logo-svg" style="display:inline-block; vertical-align:middle; margin-right:4px;"><rect width="24" height="24" rx="4" fill="var(--c-lime)"></rect></svg>
+              <span>Terminal</span>
+            </a>
+            <div class="gartner-badge" id="gartner-badge">
+              <div class="badge-title">Gartner.</div>
+              <div class="badge-body">2025 Cool Vendor<br>Yard Management<br>Featured Vendor</div>
+            </div>
+          </div>
+          
+          <!-- Middle Col 1 -->
+          <div>
+            <div class="footer-col-title">Technology</div>
+            <ul class="footer-links">
+              <li><a href="#" class="footer-link">Homepage</a></li>
+              <li><a href="#operating-system" class="footer-link">Yard Operating System</a></li>
+              <li><a href="#" class="footer-link">The Agentic AI Yard</a></li>
+              <li><a href="#" class="footer-link">Yard Efficiency Calculator</a></li>
+            </ul>
+          </div>
+          
+          <!-- Middle Col 2 -->
+          <div>
+            <div class="footer-col-title">Company</div>
+            <ul class="footer-links">
+              <li><a href="#" class="footer-link">About</a></li>
+              <li><a href="#" class="footer-link">Resources</a></li>
+              <li><a href="#" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Right Col Contact & Socials -->
+          <div>
+            <div class="footer-col-title">Reach Us</div>
+            <p class="reach-us-text">Ready for your yard of the future? <strong>+1 (737) 279-6032</strong></p>
+            <p class="reach-us-sub">Give us a call today.</p>
+            <div class="footer-socials">
+              <a href="#" class="social-icon-link" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="#" class="social-icon-link" aria-label="X">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="#" class="social-icon-link" aria-label="YouTube">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div id="footer-copyright">Copyright Terminal Industries &copy; 2026. All Rights Reserved. Technical Index.</div>
+          <div id="footer-designer">Made by obys/studio</div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
