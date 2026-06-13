@@ -15,35 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const images = [];
     let loadedCount = 0;
     let imagesPreloaded = false;
-    let particles = [];
-    let particlesInitialized = false;
-
-    function createParticles() {
-      particles = [];
-      const numParticles = 420;
-      const cx = canvas.width * 0.5;
-      const cy = canvas.height * 0.5;
-      
-      for (let i = 0; i < numParticles; i++) {
-        // Spawn within the approximate truck outline container area
-        const offsetX = (Math.random() - 0.5) * (canvas.width * 0.6);
-        const offsetY = (Math.random() - 0.5) * (canvas.height * 0.35) - 30;
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 1.5 + Math.random() * 5.5;
-        
-        particles.push({
-          startX: cx + offsetX,
-          startY: cy + offsetY,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-          size: 0.8 + Math.random() * 3.2,
-          waveOffset: Math.random() * Math.PI * 2,
-          waveAmp: 40 + Math.random() * 80,
-          color: Math.random() > 0.5 ? '#abff02' : '#ffffff'
-        });
-      }
-      particlesInitialized = true;
-    }
+    // No particles needed for Grid Scan transition
 
     // Generate file path for a frame index
     function getFramePath(index) {
@@ -84,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function preloadNextFrames() {
       let index = 2;
       function loadNextBatch() {
-        const batchSize = 10;
+        const batchSize = 4;
         const end = Math.min(index + batchSize, totalFrames + 1);
         let batchLoaded = 0;
         const totalInBatch = end - index;
@@ -105,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (batchLoaded === totalInBatch) {
               index = end;
               // Schedule next batch
-              setTimeout(loadNextBatch, 30);
+              setTimeout(loadNextBatch, 80);
             }
           };
           img.onerror = () => {
@@ -113,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             batchLoaded++;
             if (batchLoaded === totalInBatch) {
               index = end;
-              setTimeout(loadNextBatch, 30);
+              setTimeout(loadNextBatch, 80);
             }
           };
         }
@@ -196,11 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // Canvas transition: standard images when fraction < 0.80, particle burst when fraction >= 0.80
+      // Canvas transition: standard images when fraction < 0.80, Grid Scan when fraction >= 0.80
       if (canvas) {
         if (fraction < 0.80) {
           canvas.style.opacity = 1;
-          particlesInitialized = false; // Reset so particles spawn fresh next time
         } else {
           canvas.style.opacity = 1; // keep canvas opacity at 1
           
@@ -217,51 +188,99 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.globalAlpha = 1.0;
           }
           
-          // 2. Initialize particles if not done yet
-          if (!particlesInitialized) {
-            createParticles();
+          // 2. Draw Grid Scan Transition (visible between p = 0.15 and p = 0.85)
+          let gridAlpha = 0;
+          if (p >= 0.15 && p <= 0.85) {
+            if (p < 0.35) {
+              gridAlpha = (p - 0.15) / 0.20; // fade in
+            } else if (p > 0.65) {
+              gridAlpha = (0.85 - p) / 0.20; // fade out
+            } else {
+              gridAlpha = 1.0;
+            }
           }
           
-          // 3. Draw exploding wavy particles
-          const waveFactor = Math.min(1, Math.max(0, (p - 0.15) / 0.55)); // morph to wave between 0.15 and 0.70
-          const currentAlpha = p < 0.15 ? 1 : Math.max(0, 1 - (p - 0.15) / 0.65); // disappear by p = 0.8
-          
-          if (currentAlpha > 0) {
-            particles.forEach(pt => {
-              // Outward burst trajectory
-              const burstX = pt.startX + pt.vx * p * 250;
-              const burstY = pt.startY + pt.vy * p * 200;
+          if (gridAlpha > 0) {
+            ctx.save();
+            ctx.globalAlpha = gridAlpha;
+            
+            const cx = canvas.width * 0.5;
+            const cy = canvas.height * 0.5;
+            
+            // Draw radial perspective lines from center
+            const numLines = 36;
+            ctx.strokeStyle = 'rgba(171, 255, 2, 0.2)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < numLines; i++) {
+              const angle = (i / numLines) * Math.PI * 2;
+              const dx = Math.cos(angle);
+              const dy = Math.sin(angle);
               
-              // Target wave layout: a horizontal sine wave stream across the screen
-              const waveY = (canvas.height * 0.5) + Math.sin((burstX + p * 300) * 0.005 + pt.waveOffset) * pt.waveAmp;
+              // Project to outer edges of screen
+              let x, y;
+              if (Math.abs(dx) * (canvas.height * 0.5) > Math.abs(dy) * (canvas.width * 0.5)) {
+                x = dx > 0 ? canvas.width : 0;
+                y = cy + (x - cx) * (dy / dx);
+              } else {
+                y = dy > 0 ? canvas.height : 0;
+                x = cx + (y - cy) * (dx / dy);
+              }
               
-              // Interpolate coordinates based on waveFactor
-              const currentX = burstX + waveFactor * (Math.sin(p * 5 + pt.waveOffset) * 60);
-              const currentY = (1 - waveFactor) * burstY + waveFactor * waveY;
-              
-              // Soft glowing halo
               ctx.beginPath();
-              ctx.arc(currentX, currentY, pt.size * 2.2, 0, Math.PI * 2);
-              ctx.fillStyle = pt.color;
-              ctx.globalAlpha = currentAlpha * 0.16;
-              ctx.fill();
+              ctx.moveTo(cx, cy);
+              ctx.lineTo(x, y);
+              ctx.stroke();
+            }
+            
+            // Draw receding concentric rectangles
+            const numRects = 15;
+            const flowOffset = (p * 4.0) % 1.0; // dynamic tunnel movement bound to scroll
+            
+            for (let i = 0; i < numRects; i++) {
+              const depth = (i + flowOffset) / numRects;
+              const z = Math.pow(depth, 2.2); // exponential scaling for 3D depth effect
               
-              // Core particle
-              ctx.beginPath();
-              ctx.arc(currentX, currentY, pt.size, 0, Math.PI * 2);
-              ctx.fillStyle = pt.color;
-              ctx.globalAlpha = currentAlpha;
-              ctx.fill();
-            });
+              if (z <= 0) continue;
+              
+              const w = canvas.width * z;
+              const h = canvas.height * z;
+              const rx = cx - w * 0.5;
+              const ry = cy - h * 0.5;
+              
+              // Fade out at far center and extreme outer edge
+              const opacityFactor = Math.sin(depth * Math.PI);
+              ctx.strokeStyle = `rgba(171, 255, 2, ${0.12 + opacityFactor * 0.38})`;
+              ctx.lineWidth = 0.5 + z * 2.0;
+              ctx.strokeRect(rx, ry, w, h);
+            }
+            
+            // Draw a high-tech glowing horizontal scan bar moving down based on scroll progress
+            const scanY = (p * 2.0 % 1.0) * canvas.height;
+            const scanGrad = ctx.createLinearGradient(0, scanY - 50, 0, scanY + 50);
+            scanGrad.addColorStop(0, 'rgba(171, 255, 2, 0)');
+            scanGrad.addColorStop(0.5, 'rgba(171, 255, 2, 0.40)');
+            scanGrad.addColorStop(1, 'rgba(171, 255, 2, 0)');
+            
+            ctx.fillStyle = scanGrad;
+            ctx.fillRect(0, scanY - 50, canvas.width, 100);
+            
+            // Glowing core scan line
+            ctx.strokeStyle = 'rgba(171, 255, 2, 0.85)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(0, scanY);
+            ctx.lineTo(canvas.width, scanY);
+            ctx.stroke();
+            
+            ctx.restore();
           }
-          ctx.globalAlpha = 1.0; // Restore globalAlpha
         }
       }
 
       const transText = document.getElementById('hero-trans-text');
       if (transText) {
         if (fraction >= 0.94) {
-          // Text starts appearing once particles are fading/gone (94% to 100% of hero scroll)
+          // Text starts appearing once Grid Scan is fading/gone (94% to 100% of hero scroll)
           const textProg = Math.min(1, (fraction - 0.94) / 0.06);
           transText.style.opacity = textProg;
           const translateY = -50 - (10 * (1 - textProg)); // clean upward ease
