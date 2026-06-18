@@ -15,12 +15,12 @@
   <header class="site-header" id="header">
     <div class="header-inner">
       <a href="#" class="logo" id="logo-home">
-        <!-- Custom Terminal T Logo SVG -->
+        <!-- Custom Logistics L Logo SVG -->
         <svg class="logo-svg" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="28" height="28" rx="6" fill="white"/>
-          <path d="M7 8H21V11H15.5V21H12.5V11H7V8Z" fill="#052424"/>
+          <path d="M10 8H13V18H18V21H10V8Z" fill="#052424"/>
         </svg>
-        <span>Terminal</span>
+        <span>Logistics</span>
       </a>
       
       <nav class="nav-links">
@@ -67,20 +67,29 @@
   </header>
 
 
+
   <!-- Hero Section with Clean Scroll-based Frames -->
   <section class="hero-scroll-wrapper" id="hero">
     <!-- Sticky Canvas Container -->
     <div class="hero-sticky-container">
       <canvas id="hero-frame-canvas"></canvas>
       
-      <!-- Shutter Panels and Transition Text -->
-      <div class="hero-transition-text" id="hero-trans-text">Powering the yards behind<br>the brands you know</div>
+      <!-- Shutter Panels -->
+      <div class="hero-shutter shutter-top" id="hero-shutter-top"></div>
+      <div class="hero-shutter shutter-bottom" id="hero-shutter-bottom"></div>
+      
+      <!-- Transition Text -->
+      <div class="hero-transition-text" id="hero-trans-text">
+        <h1 class="hero-main-title">We have reinvented<br>the future of logistics</h1>
+        <p class="hero-sub-title">Real-time computer vision orchestration bridging the highway and the warehouse.</p>
+      </div>
     </div>
   </section>
 
 
-  <!-- Brands Grid Section right after Hero -->
-  <section class="section brands-section" id="brands">
+  <!-- Brands Grid Section right after Hero Wrapper -->
+  <div class="brands-scroll-wrapper">
+    <section class="section brands-section" id="brands">
     <div class="brands-container">
       
       <div class="brands-grid-wrapper reveal-on-scroll">
@@ -243,19 +252,21 @@
               <text x="50%" y="62%" font-family="var(--font-primary)" font-weight="300" font-size="13" text-anchor="middle" letter-spacing="4">KASPER</text>
             </svg>
           </div>
-        </div>
       </div>
     </div>
   </section>
+  </div>
 
-  <!-- Transition Quote Section -->
-  <section class="quote-section" id="quote">
+  <!-- Transition Quote Section Wrapper -->
+  <div class="quote-scroll-wrapper">
+    <section class="quote-section" id="quote">
     <div class="quote-container">
       <h2 class="quote-text">
         Imagine the yard as an intelligent bridge seamlessly connecting highway to warehouse.
       </h2>
     </div>
   </section>
+  </div>
 
 
   <!-- Advantages Section -->
@@ -705,7 +716,7 @@
       <div class="contact-left">
         <h2 class="heading-large" style="color: var(--c-dark-green); margin-bottom: 2rem;">Contact us and we will be in touch same day, your way</h2>
         
-        <p class="contact-desc">Fill out the form, and we'll be happy to discuss how Terminal can help you with your yard of the future:</p>
+        <p class="contact-desc">Fill out the form, and we'll be happy to discuss how Logistics can help you with your yard of the future:</p>
         <ul class="contact-bullets">
           <li>30-minute demo</li>
           <li>Needs discovery call</li>
@@ -783,7 +794,7 @@
           <div class="footer-logo-col">
             <a href="#" class="logo" id="logo-footer">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="logo-svg" style="display:inline-block; vertical-align:middle; margin-right:4px;"><rect width="24" height="24" rx="4" fill="var(--c-lime)"></rect></svg>
-              <span>Terminal</span>
+              <span>Logistics</span>
             </a>
             <div class="gartner-badge" id="gartner-badge">
               <div class="badge-title">Gartner.</div>
@@ -832,7 +843,7 @@
         </div>
 
         <div class="footer-bottom">
-          <div id="footer-copyright">Copyright Terminal Industries &copy; 2026. All Rights Reserved. Technical Index.</div>
+          <div id="footer-copyright">Copyright Logistics Industries &copy; 2026. All Rights Reserved. Technical Index.</div>
           <div id="footer-designer">Made by obys/studio</div>
         </div>
       </footer>

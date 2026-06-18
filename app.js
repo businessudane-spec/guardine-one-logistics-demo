@@ -168,126 +168,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // Canvas transition: standard images when fraction < 0.80, Grid Scan when fraction >= 0.80
+      // Canvas transition: freeze on last frame when fraction >= 0.80
       if (canvas) {
-        if (fraction < 0.80) {
-          canvas.style.opacity = 1;
-        } else {
-          canvas.style.opacity = 1; // keep canvas opacity at 1
-          
-          const p = (fraction - 0.80) / 0.20; // Progress from 0 to 1
-          
-          // Clear canvas with the dark background color
-          ctx.fillStyle = '#052424';
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-          
-          // 1. Draw the last frame truck wireframe image fading out (fully gone by p = 0.4)
-          if (images[300] && p < 0.4) {
-            ctx.globalAlpha = 1 - (p / 0.4);
+        if (fraction >= 0.80) {
+          if (images[300]) {
             renderImage(images[300]);
-            ctx.globalAlpha = 1.0;
-          }
-          
-          // 2. Draw Grid Scan Transition (visible between p = 0.15 and p = 0.85)
-          let gridAlpha = 0;
-          if (p >= 0.15 && p <= 0.85) {
-            if (p < 0.35) {
-              gridAlpha = (p - 0.15) / 0.20; // fade in
-            } else if (p > 0.65) {
-              gridAlpha = (0.85 - p) / 0.20; // fade out
-            } else {
-              gridAlpha = 1.0;
-            }
-          }
-          
-          if (gridAlpha > 0) {
-            ctx.save();
-            ctx.globalAlpha = gridAlpha;
-            
-            const cx = canvas.width * 0.5;
-            const cy = canvas.height * 0.5;
-            
-            // Draw radial perspective lines from center
-            const numLines = 36;
-            ctx.strokeStyle = 'rgba(171, 255, 2, 0.2)';
-            ctx.lineWidth = 1;
-            for (let i = 0; i < numLines; i++) {
-              const angle = (i / numLines) * Math.PI * 2;
-              const dx = Math.cos(angle);
-              const dy = Math.sin(angle);
-              
-              // Project to outer edges of screen
-              let x, y;
-              if (Math.abs(dx) * (canvas.height * 0.5) > Math.abs(dy) * (canvas.width * 0.5)) {
-                x = dx > 0 ? canvas.width : 0;
-                y = cy + (x - cx) * (dy / dx);
-              } else {
-                y = dy > 0 ? canvas.height : 0;
-                x = cx + (y - cy) * (dx / dy);
-              }
-              
-              ctx.beginPath();
-              ctx.moveTo(cx, cy);
-              ctx.lineTo(x, y);
-              ctx.stroke();
-            }
-            
-            // Draw receding concentric rectangles
-            const numRects = 15;
-            const flowOffset = (p * 4.0) % 1.0; // dynamic tunnel movement bound to scroll
-            
-            for (let i = 0; i < numRects; i++) {
-              const depth = (i + flowOffset) / numRects;
-              const z = Math.pow(depth, 2.2); // exponential scaling for 3D depth effect
-              
-              if (z <= 0) continue;
-              
-              const w = canvas.width * z;
-              const h = canvas.height * z;
-              const rx = cx - w * 0.5;
-              const ry = cy - h * 0.5;
-              
-              // Fade out at far center and extreme outer edge
-              const opacityFactor = Math.sin(depth * Math.PI);
-              ctx.strokeStyle = `rgba(171, 255, 2, ${0.12 + opacityFactor * 0.38})`;
-              ctx.lineWidth = 0.5 + z * 2.0;
-              ctx.strokeRect(rx, ry, w, h);
-            }
-            
-            // Draw a high-tech glowing horizontal scan bar moving down based on scroll progress
-            const scanY = (p * 2.0 % 1.0) * canvas.height;
-            const scanGrad = ctx.createLinearGradient(0, scanY - 50, 0, scanY + 50);
-            scanGrad.addColorStop(0, 'rgba(171, 255, 2, 0)');
-            scanGrad.addColorStop(0.5, 'rgba(171, 255, 2, 0.40)');
-            scanGrad.addColorStop(1, 'rgba(171, 255, 2, 0)');
-            
-            ctx.fillStyle = scanGrad;
-            ctx.fillRect(0, scanY - 50, canvas.width, 100);
-            
-            // Glowing core scan line
-            ctx.strokeStyle = 'rgba(171, 255, 2, 0.85)';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(0, scanY);
-            ctx.lineTo(canvas.width, scanY);
-            ctx.stroke();
-            
-            ctx.restore();
           }
         }
       }
 
       const transText = document.getElementById('hero-trans-text');
       if (transText) {
-        if (fraction >= 0.94) {
-          // Text starts appearing once Grid Scan is fading/gone (94% to 100% of hero scroll)
-          const textProg = Math.min(1, (fraction - 0.94) / 0.06);
+        if (fraction >= 0.60) {
+          const textProg = Math.min(1, (fraction - 0.60) / 0.30); // fully visible by fraction = 0.90
           transText.style.opacity = textProg;
-          const translateY = -50 - (10 * (1 - textProg)); // clean upward ease
+          const translateY = -50 - (15 * (1 - textProg)); // slide up into view
           transText.style.transform = `translate(-50%, ${translateY}%)`;
         } else {
           transText.style.opacity = 0;
-          transText.style.transform = 'translate(-50%, -40%)';
+          transText.style.transform = 'translate(-50%, -35%)';
         }
       }
     }
@@ -707,5 +606,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   revealElements.forEach(el => revealObserver.observe(el));
+
+  // 8. Services section card-stacking shrink animation on scroll
+  const serviceCards = document.querySelectorAll('.service-card');
+  if (serviceCards.length > 0) {
+    // Dynamically set z-indexes to stack sequentially
+    serviceCards.forEach((card, idx) => {
+      card.style.zIndex = idx + 1;
+    });
+
+    function updateServiceCards() {
+      serviceCards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        // Check if the card has started scrolling past the top of the viewport
+        if (rect.top < 0) {
+          // Calculate the percentage of the card scrolled out (up to 100% of height)
+          const scrolledFraction = Math.min(1, Math.abs(rect.top) / rect.height);
+          
+          // Scale down (shrink) and fade slightly
+          const scale = 1 - scrolledFraction * 0.08; // scales from 1.0 down to 0.92
+          const opacity = 1 - scrolledFraction * 0.3; // fades down to 70% opacity
+          
+          card.style.transform = `scale(${scale})`;
+          card.style.opacity = opacity;
+        } else {
+          // Reset styles when the card is in full view or below
+          card.style.transform = 'scale(1)';
+          card.style.opacity = 1;
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateServiceCards);
+    updateServiceCards(); // initial run
+  }
 });
 
