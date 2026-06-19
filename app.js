@@ -4,6 +4,26 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Pre-split the hero main title into words and span elements for a springy writing reveal animation
+  const mainTitle = document.querySelector('.hero-main-title');
+  let revealChars = [];
+  if (mainTitle) {
+    const text = mainTitle.innerHTML;
+    const lines = text.split('<br>');
+    const wrappedLines = lines.map(line => {
+      const words = line.split(' ');
+      return words.map(word => {
+        if (word === '') return '';
+        const chars = word.split('').map(char => {
+          return `<span class="reveal-char">${char}</span>`;
+        }).join('');
+        return `<span class="reveal-word" style="display: inline-block; white-space: nowrap;">${chars}</span>`;
+      }).join(' ');
+    });
+    mainTitle.innerHTML = wrappedLines.join('<br>');
+    revealChars = mainTitle.querySelectorAll('.reveal-char');
+  }
+
   // 1. Scroll-Based Image Frame Engine
   const canvas = document.getElementById('hero-frame-canvas');
   const heroWrapper = document.getElementById('hero');
@@ -15,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const images = [];
     let loadedCount = 0;
     let imagesPreloaded = false;
-    // No particles needed for Grid Scan transition
 
     // Generate file path for a frame index
     function getFramePath(index) {
@@ -178,15 +197,64 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const transText = document.getElementById('hero-trans-text');
+      const shutterTop = document.getElementById('hero-shutter-top');
+      const shutterBottom = document.getElementById('hero-shutter-bottom');
+      const heroWaves = document.getElementById('hero-waves');
+
+      // Shutter closing progress (0 to 1 as fraction goes from 0.80 to 1.00)
+      let shutterProg = 0;
+      if (fraction >= 0.80) {
+        shutterProg = Math.min(1, (fraction - 0.80) / 0.20);
+      }
+
+      // Animate shutters closing
+      if (shutterTop && shutterBottom) {
+        shutterTop.style.transform = `translateY(${-100 * (1 - shutterProg)}%)`;
+        shutterBottom.style.transform = `translateY(${100 * (1 - shutterProg)}%)`;
+      }
+
+      // Animate background waves opacity
+      if (heroWaves) {
+        heroWaves.style.opacity = shutterProg;
+      }
+
       if (transText) {
         if (fraction >= 0.60) {
           const textProg = Math.min(1, (fraction - 0.60) / 0.30); // fully visible by fraction = 0.90
-          transText.style.opacity = textProg;
-          const translateY = -50 - (15 * (1 - textProg)); // slide up into view
-          transText.style.transform = `translate(-50%, ${translateY}%)`;
+          transText.style.opacity = 1;
+          
+          let translateY;
+          if (fraction >= 0.80) {
+            translateY = `calc(0px - ${42 * shutterProg}vh)`;
+          } else {
+            translateY = `${20 * (1 - textProg)}px`;
+          }
+          
+          transText.style.transform = `translate(-50%, ${translateY})`;
+
+          // Reveal letters one by one based on textProg
+          if (revealChars.length > 0) {
+            const totalChars = revealChars.length;
+            const activeCount = Math.floor(textProg * totalChars);
+            
+            revealChars.forEach((charSpan, idx) => {
+              if (idx < activeCount) {
+                charSpan.classList.add('revealed');
+                charSpan.classList.remove('active-char');
+              } else if (idx === activeCount) {
+                charSpan.classList.add('revealed', 'active-char');
+              } else {
+                charSpan.classList.remove('revealed', 'active-char');
+              }
+            });
+          }
         } else {
           transText.style.opacity = 0;
-          transText.style.transform = 'translate(-50%, -35%)';
+          transText.style.transform = 'translate(-50%, 30px)';
+          // Reset all characters
+          revealChars.forEach(charSpan => {
+            charSpan.classList.remove('revealed', 'active-char');
+          });
         }
       }
     }
@@ -439,7 +507,8 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
-        observer.unobserve(entry.target);
+      } else {
+        entry.target.classList.remove('active');
       }
     });
   }, {
@@ -616,23 +685,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateServiceCards() {
-      serviceCards.forEach((card) => {
-        const rect = card.getBoundingClientRect();
-        // Check if the card has started scrolling past the top of the viewport
-        if (rect.top < 0) {
-          // Calculate the percentage of the card scrolled out (up to 100% of height)
-          const scrolledFraction = Math.min(1, Math.abs(rect.top) / rect.height);
+      serviceCards.forEach((card, idx) => {
+        if (idx < serviceCards.length - 1) {
+          const nextCard = serviceCards[idx + 1];
+          const nextRect = nextCard.getBoundingClientRect();
           
-          // Scale down (shrink) and fade slightly
-          const scale = 1 - scrolledFraction * 0.08; // scales from 1.0 down to 0.92
-          const opacity = 1 - scrolledFraction * 0.3; // fades down to 70% opacity
-          
-          card.style.transform = `scale(${scale})`;
-          card.style.opacity = opacity;
+          if (nextRect.top < window.innerHeight) {
+            // Overlap fraction (0 to 1 as the next card scrolls from bottom of screen to top of screen)
+            const overlap = Math.max(0, Math.min(1, (window.innerHeight - nextRect.top) / window.innerHeight));
+            const scale = 1 - overlap * 0.12; // scales from 1.0 down to 0.88
+            const opacity = 1 - overlap; // fades out completely to 0
+            
+            card.style.transform = `scale(${scale})`;
+            card.style.opacity = opacity;
+          } else {
+            card.style.transform = 'scale(1)';
+            card.style.opacity = 1;
+          }
         } else {
-          // Reset styles when the card is in full view or below
-          card.style.transform = 'scale(1)';
-          card.style.opacity = 1;
+          // For the last card, shrink/fade only when the whole section scrolls out
+          const rect = card.getBoundingClientRect();
+          if (rect.top < 0) {
+            const scrolledFraction = Math.min(1, Math.abs(rect.top) / rect.height);
+            const scale = 1 - scrolledFraction * 0.08;
+            const opacity = 1 - scrolledFraction;
+            card.style.transform = `scale(${scale})`;
+            card.style.opacity = opacity;
+          } else {
+            card.style.transform = 'scale(1)';
+            card.style.opacity = 1;
+          }
         }
       });
     }
@@ -640,5 +722,103 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', updateServiceCards);
     updateServiceCards(); // initial run
   }
-});
 
+  // 9. Quote Section Scroll Animation (First and Second Boxy Quote reveal)
+  const quoteSection = document.getElementById('quote');
+  const quoteWrapper = document.querySelector('.quote-scroll-wrapper');
+  if (quoteSection && quoteWrapper) {
+    const firstQuote = quoteSection.querySelector('.first-quote');
+    const secondQuote = quoteSection.querySelector('.second-quote');
+
+    window.addEventListener('scroll', () => {
+      const rect = quoteWrapper.getBoundingClientRect();
+      const scrollRange = rect.height - window.innerHeight;
+      let fraction = 0;
+      if (scrollRange > 0) {
+        fraction = Math.max(0, Math.min(1, -rect.top / scrollRange));
+      }
+
+      // Phase 1 (0.0 to 0.15): Video only, text opacity 0
+      // Phase 2 (0.15 to 0.45): First text fades in and out
+      let firstOpacity = 0;
+      if (fraction >= 0.15 && fraction < 0.30) {
+        firstOpacity = (fraction - 0.15) / 0.15;
+      } else if (fraction >= 0.30 && fraction < 0.45) {
+        firstOpacity = 1 - (fraction - 0.30) / 0.15;
+      }
+
+      // Phase 3 (0.45 to 0.90): Second boxy quote fades in and stays, then fades out at the end
+      let secondOpacity = 0;
+      if (fraction >= 0.45 && fraction < 0.65) {
+        secondOpacity = (fraction - 0.45) / 0.20;
+      } else if (fraction >= 0.65 && fraction < 0.85) {
+        secondOpacity = 1;
+      } else if (fraction >= 0.85) {
+        secondOpacity = 1 - (fraction - 0.85) / 0.15;
+      }
+
+          if (firstQuote) {
+        firstQuote.style.opacity = firstOpacity;
+        firstQuote.style.transform = `translate(-50%, calc(-50% + ${25 * (1 - firstOpacity)}px))`;
+      }
+
+      if (secondQuote) {
+        secondQuote.style.opacity = secondOpacity;
+        const offset = 150 * (1 - secondOpacity);
+        const scale = 0.8 + 0.2 * secondOpacity;
+        secondQuote.style.transform = `translate(-50%, calc(-50% + ${offset}px)) scale(${scale})`;
+      }
+    });
+  }
+
+  // 10. Advantages Section Scroll Tracker HUD
+  const hudProgressLine = document.getElementById('hud-progress-line');
+  const hudNodes = document.querySelectorAll('.hud-node');
+  const advCards = document.querySelectorAll('.advantage-card');
+  const advantagesSection = document.getElementById('advantages');
+
+  if (advantagesSection && advCards.length > 0 && hudNodes.length > 0) {
+    window.addEventListener('scroll', () => {
+      const rect = advantagesSection.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate overall progress through the advantages section
+      const totalScrollRange = rect.height - viewportHeight;
+      let scrollFraction = 0;
+      if (totalScrollRange > 0) {
+        scrollFraction = Math.max(0, Math.min(1, -rect.top / totalScrollRange));
+      }
+
+      // Update progress bar line
+      if (hudProgressLine) {
+        // Map scroll fraction to line height percentage safely
+        hudProgressLine.style.height = `${Math.min(100, Math.max(0, scrollFraction * 100))}%`;
+      }
+
+      // Find which card is currently active (closest to center of viewport)
+      let activeIndex = 0;
+      let minDistance = Infinity;
+
+      advCards.forEach((card, idx) => {
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.top + cardRect.height / 2;
+        const viewportCenter = viewportHeight / 2;
+        const distance = Math.abs(cardCenter - viewportCenter);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          activeIndex = idx;
+        }
+      });
+
+      // Update active state on tracking nodes
+      hudNodes.forEach((node, idx) => {
+        if (idx === activeIndex) {
+          node.classList.add('active');
+        } else {
+          node.classList.remove('active');
+        }
+      });
+    });
+  }
+});
