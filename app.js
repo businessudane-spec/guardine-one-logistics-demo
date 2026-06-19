@@ -729,6 +729,19 @@ document.addEventListener('DOMContentLoaded', () => {
   if (quoteSection && quoteWrapper) {
     const firstQuote = quoteSection.querySelector('.first-quote');
     const secondQuote = quoteSection.querySelector('.second-quote');
+    const quoteVideo = quoteSection.querySelector('.quote-bg-video');
+
+    // Force play video on interaction to bypass browser autoplay restrictions
+    if (quoteVideo) {
+      const forcePlay = () => {
+        if (quoteVideo.paused) {
+          quoteVideo.play().catch(e => console.log("Play failed:", e));
+        }
+      };
+      window.addEventListener('scroll', forcePlay, { once: true });
+      window.addEventListener('click', forcePlay, { once: true });
+      window.addEventListener('touchstart', forcePlay, { once: true });
+    }
 
     window.addEventListener('scroll', () => {
       const rect = quoteWrapper.getBoundingClientRect();
